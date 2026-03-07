@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pth
+*.bin
+*.label
+*.tfrecord
+*.tar.gz
+tensorboard/
+overfit_test/
+data/
