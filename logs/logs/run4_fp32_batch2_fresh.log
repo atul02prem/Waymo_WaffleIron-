@@ -1,0 +1,398 @@
+2026-03-09 13:53:23.014012: I tensorflow/core/util/port.cc:110] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-09 13:53:23.015833: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2026-03-09 13:53:23.051141: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-09 13:53:23.550681: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Using torch.scatter_reduce for 3D to 2D projection.
+Model:
+DataParallel(
+  (module): Segmenter(
+    (embed): Embedding(
+      (norm): BatchNorm1d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv1): Conv1d(5, 256, kernel_size=(1,), stride=(1,))
+      (conv2): Sequential(
+        (0): BatchNorm2d(5, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (1): Conv2d(5, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (3): ReLU(inplace=True)
+        (4): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (final): Conv1d(512, 256, kernel_size=(1,), stride=(1,))
+    )
+    (waffleiron): WaffleIron(
+      (channel_mix): ModuleList(
+        (0-47): 48 x ChannelMix(
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (mlp): Sequential(
+            (0): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+            (1): ReLU(inplace=True)
+            (2): Conv1d(256, 256, kernel_size=(1,), stride=(1,))
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+      )
+      (spatial_mix): ModuleList(
+        (0): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (1-2): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (3): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (4-5): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (6): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (7-8): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (9): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (10-11): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (12): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (13-14): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (15): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (16-17): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (18): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (19-20): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (21): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (22-23): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (24): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (25-26): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (27): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (28-29): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (30): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (31-32): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (33): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (34-35): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (36): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (37-38): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (39): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (40-41): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (42): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (43-44): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (45): SpatialMix(
+          (grid): [250, 250]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+        (46-47): 2 x SpatialMix(
+          (grid): [250, 12]
+          (norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (ffn): Sequential(
+            (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+            (1): ReLU(inplace=True)
+            (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256)
+          )
+          (scale): Conv1d(256, 256, kernel_size=(1,), stride=(1,), groups=256, bias=False)
+          (drop_path): DropPath(prob=0.2)
+        )
+      )
+    )
+    (classif): Conv1d(256, 22, kernel_size=(1,), stride=(1,))
+  )
+)
+6.841386 x 10^6 trainable parameters 
+Trainer on gpu: None. World size:1.
+Checkpoint loaded on cuda:0 (cuda:0): ./waymo_finetune/
+
+Training: 5/60 epochs
+       0%|                                                  | 0/11845 [00:00<?, ?it/s]       0%|                                                  | 1/11845 [00:02<7:17:38,  2.22s/it]       0%|                                                  | 2/11845 [00:02<3:44:22,  1.14s/it]       0%|                                                  | 3/11845 [00:03<2:55:15,  1.13it/s]       0%|                                                  | 4/11845 [00:03<2:17:13,  1.44it/s]       0%|                                                  | 5/11845 [00:03<1:53:54,  1.73it/s]       0%|                                                  | 6/11845 [00:04<1:42:54,  1.92it/s]       0%|                                                  | 7/11845 [00:04<1:33:01,  2.12it/s]       0%|                                                  | 8/11845 [00:05<1:29:03,  2.22it/s]       0%|                                                  | 9/11845 [00:05<1:28:57,  2.22it/s]       0%|                                                  | 10/11845 [00:05<1:23:48,  2.35it/s]       0%|                                                  | 11/11845 [00:06<1:20:48,  2.44it/s]       0%|                                                  | 12/11845 [00:06<1:21:48,  2.41it/s]       0%|                                                  | 13/11845 [00:07<1:20:08,  2.46it/s]       0%|                                                  | 14/11845 [00:07<1:16:18,  2.58it/s]       0%|                                                  | 15/11845 [00:07<1:16:37,  2.57it/s]       0%|                                                  | 16/11845 [00:08<1:15:43,  2.60it/s]       0%|                                                  | 17/11845 [00:08<1:27:14,  2.26it/s]       0%|                                                  | 18/11845 [00:09<1:25:24,  2.31it/s]       0%|                                                  | 19/11845 [00:09<1:26:24,  2.28it/s]       0%|                                                  | 20/11845 [00:10<1:23:39,  2.36it/s]       0%|                                                  | 21/11845 [00:10<1:19:52,  2.47it/s]       0%|                                                  | 22/11845 [00:10<1:19:53,  2.47it/s]       0%|                                                  | 23/11845 [00:11<1:17:47,  2.53it/s]       0%|                                                  | 24/11845 [00:11<1:17:41,  2.54it/s]       0%|                                                  | 25/11845 [00:12<1:16:55,  2.56it/s]       0%|                                                  | 26/11845 [00:12<1:16:23,  2.58it/s]       0%|                                                  | 27/11845 [00:12<1:18:08,  2.52it/s]       0%|                                                  | 28/11845 [00:13<1:15:01,  2.63it/s]       0%|                                                  | 29/11845 [00:13<1:15:35,  2.61it/s]       0%|▏                                                 | 30/11845 [00:14<1:20:55,  2.43it/s]       0%|▏                                                 | 31/11845 [00:14<1:23:34,  2.36it/s]       0%|▏                                                 | 32/11845 [00:14<1:20:58,  2.43it/s]       0%|▏                                                 | 33/11845 [00:15<1:21:15,  2.42it/s]       0%|▏                                                 | 34/11845 [00:15<1:19:47,  2.47it/s]       0%|▏                                                 | 35/11845 [00:16<1:19:05,  2.49it/s]       0%|▏                                                 | 36/11845 [00:16<1:18:21,  2.51it/s]       0%|▏                                                 | 37/11845 [00:16<1:19:08,  2.49it/s]       0%|▏                                                 | 38/11845 [00:17<1:16:04,  2.59it/s]       0%|▏                                                 | 39/11845 [00:17<1:15:14,  2.62it/s]       0%|▏                                                 | 40/11845 [00:17<1:14:04,  2.66it/s]       0%|▏                                                 | 41/11845 [00:18<1:15:08,  2.62it/s]       0%|▏                                                 | 42/11845 [00:18<1:13:52,  2.66it/s]       0%|▏                                                 | 43/11845 [00:19<1:25:29,  2.30it/s]       0%|▏                                                 | 44/11845 [00:19<1:22:41,  2.38it/s]       0%|▏                                                 | 45/11845 [00:20<1:20:21,  2.45it/s]       0%|▏                                                 | 46/11845 [00:20<1:22:16,  2.39it/s]       0%|▏                                                 | 47/11845 [00:20<1:20:07,  2.45it/s]       0%|▏                                                 | 48/11845 [00:21<1:19:08,  2.48it/s]       0%|▏                                                 | 49/11845 [00:21<1:17:43,  2.53it/s]       0%|▏                                                 | 50/11845 [00:22<1:18:01,  2.52it/s]       0%|▏                                                 | 51/11845 [00:22<1:15:40,  2.60it/s]       0%|▏                                                 | 52/11845 [00:22<1:13:00,  2.69it/s]       0%|▏                                                 | 53/11845 [00:23<1:13:40,  2.67it/s]       0%|▏                                                 | 54/11845 [00:23<1:12:38,  2.71it/s]       0%|▏                                                 | 55/11845 [00:23<1:12:37,  2.71it/s]       0%|▏                                                 | 56/11845 [00:24<1:23:53,  2.34it/s]       0%|▏                                                 | 57/11845 [00:24<1:23:08,  2.36it/s]       0%|▏                                                 | 58/11845 [00:25<1:20:45,  2.43it/s]       0%|▏                                                 | 59/11845 [00:25<1:21:09,  2.42it/s]       1%|▎                                                 | 60/11845 [00:25<1:17:23,  2.54it/s]       1%|▎                                                 | 61/11845 [00:26<1:16:38,  2.56it/s]       1%|▎                                                 | 62/11845 [00:26<1:14:54,  2.62it/s]       1%|▎                                                 | 63/11845 [00:27<1:17:04,  2.55it/s]       1%|▎                                                 | 64/11845 [00:27<1:16:56,  2.55it/s]       1%|▎                                                 | 65/11845 [00:27<1:20:00,  2.45it/s]       1%|▎                                                 | 66/11845 [00:28<1:16:34,  2.56it/s]       1%|▎                                                 | 67/11845 [00:28<1:18:10,  2.51it/s]       1%|▎                                                 | 68/11845 [00:29<1:17:08,  2.54it/s]       1%|▎                                                 | 69/11845 [00:29<1:25:52,  2.29it/s]       1%|▎                                                 | 70/11845 [00:29<1:20:30,  2.44it/s]       1%|▎                                                 | 71/11845 [00:30<1:17:40,  2.53it/s]       1%|▎                                                 | 72/11845 [00:30<1:17:12,  2.54it/s]       1%|▎                                                 | 73/11845 [00:31<1:18:15,  2.51it/s]       1%|▎                                                 | 74/11845 [00:31<1:17:40,  2.53it/s]       1%|▎                                                 | 75/11845 [00:31<1:18:37,  2.49it/s]       1%|▎                                                 | 76/11845 [00:32<1:15:18,  2.60it/s]       1%|▎                                                 | 77/11845 [00:32<1:16:19,  2.57it/s]       1%|▎                                                 | 78/11845 [00:33<1:14:19,  2.64it/s]       1%|▎                                                 | 79/11845 [00:33<1:14:05,  2.65it/s]       1%|▎                                                 | 80/11845 [00:33<1:14:18,  2.64it/s]       1%|▎                                                 | 81/11845 [00:34<1:17:17,  2.54it/s]       1%|▎                                                 | 82/11845 [00:34<1:28:51,  2.21it/s]       1%|▎                                                 | 83/11845 [00:35<1:24:13,  2.33it/s]       1%|▎                                                 | 84/11845 [00:35<1:23:59,  2.33it/s]       1%|▎                                                 | 85/11845 [00:36<1:20:56,  2.42it/s]       1%|▎                                                 | 86/11845 [00:36<1:20:40,  2.43it/s]       1%|▎                                                 | 87/11845 [00:36<1:21:00,  2.42it/s]       1%|▎                                                 | 88/11845 [00:37<1:20:31,  2.43it/s]       1%|▍                                                 | 89/11845 [00:37<1:18:46,  2.49it/s]       1%|▍                                                 | 90/11845 [00:37<1:16:20,  2.57it/s]       1%|▍                                                 | 91/11845 [00:38<1:15:13,  2.60it/s]       1%|▍                                                 | 92/11845 [00:38<1:16:49,  2.55it/s]       1%|▍                                                 | 93/11845 [00:39<1:16:31,  2.56it/s]       1%|▍                                                 | 94/11845 [00:39<1:16:43,  2.55it/s]       1%|▍                                                 | 95/11845 [00:39<1:14:39,  2.62it/s]       1%|▍                                                 | 96/11845 [00:40<1:14:43,  2.62it/s]       1%|▍                                                 | 97/11845 [00:40<1:24:37,  2.31it/s]       1%|▍                                                 | 98/11845 [00:41<1:21:46,  2.39it/s]       1%|▍                                                 | 99/11845 [00:41<1:19:52,  2.45it/s]       1%|▍                                                 | 100/11845 [00:41<1:18:43,  2.49it/s]       1%|▍                                                 | 101/11845 [00:42<1:20:03,  2.44it/s]       1%|▍                                                 | 102/11845 [00:42<1:18:39,  2.49it/s]       1%|▍                                                 | 103/11845 [00:43<1:16:45,  2.55it/s]       1%|▍                                                 | 104/11845 [00:43<1:20:10,  2.44it/s]       1%|▍                                                 | 105/11845 [00:44<1:19:18,  2.47it/s]       1%|▍                                                 | 106/11845 [00:44<1:18:18,  2.50it/s]       1%|▍                                                 | 107/11845 [00:44<1:16:23,  2.56it/s]       1%|▍                                                 | 108/11845 [00:45<1:13:12,  2.67it/s]       1%|▍                                                 | 109/11845 [00:45<1:15:49,  2.58it/s]       1%|▍                                                 | 110/11845 [00:45<1:17:25,  2.53it/s]       1%|▍                                                 | 111/11845 [00:46<1:23:37,  2.34it/s]       1%|▍                                                 | 112/11845 [00:46<1:20:24,  2.43it/s]       1%|▍                                                 | 113/11845 [00:47<1:18:35,  2.49it/s]       1%|▍                                                 | 114/11845 [00:47<1:18:37,  2.49it/s]       1%|▍                                                 | 115/11845 [00:47<1:18:05,  2.50it/s]       1%|▍                                                 | 116/11845 [00:48<1:16:04,  2.57it/s]       1%|▍                                                 | 117/11845 [00:48<1:15:42,  2.58it/s]       1%|▍                                                 | 118/11845 [00:49<1:15:57,  2.57it/s]       1%|▌                                                 | 119/11845 [00:49<1:18:12,  2.50it/s]       1%|▌                                                 | 120/11845 [00:49<1:14:37,  2.62it/s]       1%|▌                                                 | 121/11845 [00:50<1:15:15,  2.60it/s]       1%|▌                                                 | 122/11845 [00:50<1:14:05,  2.64it/s]       1%|▌                                                 | 123/11845 [00:51<1:14:17,  2.63it/s]       1%|▌                                                 | 124/11845 [00:51<1:13:24,  2.66it/s]       1%|▌                                                 | 125/11845 [00:51<1:21:24,  2.40it/s]       1%|▌                                                 | 126/11845 [00:52<1:19:20,  2.46it/s]       1%|▌                                                 | 127/11845 [00:52<1:22:17,  2.37it/s]       1%|▌                                                 | 128/11845 [00:53<1:23:12,  2.35it/s]       1%|▌                                                 | 129/11845 [00:53<1:18:42,  2.48it/s]       1%|▌                                                 | 130/11845 [00:53<1:17:31,  2.52it/s]       1%|▌                                                 | 131/11845 [00:54<1:18:16,  2.49it/s]       1%|▌                                                 | 132/11845 [00:54<1:16:44,  2.54it/s]       1%|▌                                                 | 133/11845 [00:55<1:17:23,  2.52it/s]       1%|▌                                                 | 134/11845 [00:55<1:18:16,  2.49it/s]       1%|▌                                                 | 135/11845 [00:55<1:19:16,  2.46it/s]       1%|▌                                                 | 136/11845 [00:56<1:19:58,  2.44it/s]       1%|▌                                                 | 137/11845 [00:56<1:18:34,  2.48it/s]       1%|▌                                                 | 138/11845 [00:57<1:16:15,  2.56it/s]       1%|▌                                                 | 139/11845 [00:57<1:24:30,  2.31it/s]       1%|▌                                                 | 140/11845 [00:58<1:23:44,  2.33it/s]       1%|▌                                                 | 141/11845 [00:58<1:22:59,  2.35it/s]       1%|▌                                                 | 142/11845 [00:58<1:20:47,  2.41it/s]       1%|▌                                                 | 143/11845 [00:59<1:17:41,  2.51it/s]       1%|▌                                                 | 144/11845 [00:59<1:15:42,  2.58it/s]       1%|▌                                                 | 145/11845 [00:59<1:15:45,  2.57it/s]       1%|▌                                                 | 146/11845 [01:00<1:14:34,  2.61it/s]       1%|▌                                                 | 147/11845 [01:00<1:13:21,  2.66it/s]       1%|▌                                                 | 148/11845 [01:01<1:13:19,  2.66it/s]       1%|▋                                                 | 149/11845 [01:01<1:14:33,  2.61it/s]       1%|▋                                                 | 150/11845 [01:01<1:15:32,  2.58it/s]       1%|▋                                                 | 151/11845 [01:02<1:13:58,  2.63it/s]       1%|▋                                                 | 152/11845 [01:02<1:21:53,  2.38it/s]       1%|▋                                                 | 153/11845 [01:03<1:19:19,  2.46it/s]       1%|▋                                                 | 154/11845 [01:03<1:16:36,  2.54it/s]       1%|▋                                                 | 155/11845 [01:03<1:15:57,  2.56it/s]       1%|▋                                                 | 156/11845 [01:04<1:16:47,  2.54it/s]       1%|▋                                                 | 157/11845 [01:04<1:14:18,  2.62it/s]       1%|▋                                                 | 158/11845 [01:05<1:15:12,  2.59it/s]       1%|▋                                                 | 159/11845 [01:05<1:16:46,  2.54it/s]       1%|▋                                                 | 160/11845 [01:05<1:15:45,  2.57it/s]       1%|▋                                                 | 161/11845 [01:06<1:14:22,  2.62it/s]       1%|▋                                                 | 162/11845 [01:06<1:13:08,  2.66it/s]       1%|▋                                                 | 163/11845 [01:06<1:13:21,  2.65it/s]       1%|▋                                                 | 164/11845 [01:07<1:14:53,  2.60it/s]       1%|▋                                                 | 165/11845 [01:07<1:23:11,  2.34it/s]       1%|▋                                                 | 166/11845 [01:08<1:21:10,  2.40it/s]       1%|▋                                                 | 167/11845 [01:08<1:20:52,  2.41it/s]       1%|▋                                                 | 168/11845 [01:09<1:18:55,  2.47it/s]       1%|▋                                                 | 169/11845 [01:09<1:15:43,  2.57it/s]       1%|▋                                                 | 170/11845 [01:09<1:17:25,  2.51it/s]       1%|▋                                                 | 171/11845 [01:10<1:19:07,  2.46it/s]       1%|▋                                                 | 172/11845 [01:10<1:17:08,  2.52it/s]       1%|▋                                                 | 173/11845 [01:11<1:17:54,  2.50it/s]       1%|▋                                                 | 174/11845 [01:11<1:21:19,  2.39it/s]       1%|▋                                                 | 175/11845 [01:11<1:18:48,  2.47it/s]       1%|▋                                                 | 176/11845 [01:12<1:17:08,  2.52it/s]       1%|▋                                                 | 177/11845 [01:12<1:18:30,  2.48it/s]       2%|▊                                                 | 178/11845 [01:13<1:22:42,  2.35it/s]       2%|▊                                                 | 179/11845 [01:13<1:23:29,  2.33it/s]       2%|▊                                                 | 180/11845 [01:13<1:21:33,  2.38it/s]       2%|▊                                                 | 181/11845 [01:14<1:17:58,  2.49it/s]       2%|▊                                                 | 182/11845 [01:14<1:19:07,  2.46it/s]       2%|▊                                                 | 183/11845 [01:15<1:17:13,  2.52it/s]       2%|▊                                                 | 184/11845 [01:15<1:19:57,  2.43it/s]       2%|▊                                                 | 185/11845 [01:15<1:17:54,  2.49it/s]       2%|▊                                                 | 186/11845 [01:16<1:18:42,  2.47it/s]       2%|▊                                                 | 187/11845 [01:16<1:17:03,  2.52it/s]       2%|▊                                                 | 188/11845 [01:17<1:16:33,  2.54it/s]       2%|▊                                                 | 189/11845 [01:17<1:17:53,  2.49it/s]       2%|▊                                                 | 190/11845 [01:17<1:16:42,  2.53it/s]       2%|▊                                                 | 191/11845 [01:18<1:18:22,  2.48it/s]       2%|▊                                                 | 192/11845 [01:18<1:26:10,  2.25it/s]       2%|▊                                                 | 193/11845 [01:19<1:24:36,  2.30it/s]       2%|▊                                                 | 194/11845 [01:19<1:21:06,  2.39it/s]       2%|▊                                                 | 195/11845 [01:20<1:18:42,  2.47it/s]       2%|▊                                                 | 196/11845 [01:20<1:19:48,  2.43it/s]       2%|▊                                                 | 197/11845 [01:20<1:17:27,  2.51it/s]       2%|▊                                                 | 198/11845 [01:21<1:18:27,  2.47it/s]       2%|▊                                                 | 199/11845 [01:21<1:15:53,  2.56it/s]       2%|▊                                                 | 200/11845 [01:21<1:13:53,  2.63it/s]       2%|▊                                                 | 201/11845 [01:22<1:13:11,  2.65it/s]       2%|▊                                                 | 202/11845 [01:22<1:13:03,  2.66it/s]       2%|▊                                                 | 203/11845 [01:23<1:16:00,  2.55it/s]       2%|▊                                                 | 204/11845 [01:23<1:15:13,  2.58it/s]       2%|▊                                                 | 205/11845 [01:24<1:25:07,  2.28it/s]       2%|▊                                                 | 206/11845 [01:24<1:23:51,  2.31it/s]       2%|▊                                                 | 207/11845 [01:24<1:22:44,  2.34it/s]       2%|▉                                                 | 208/11845 [01:25<1:21:57,  2.37it/s]       2%|▉                                                 | 209/11845 [01:25<1:18:47,  2.46it/s]       2%|▉                                                 | 210/11845 [01:26<1:16:58,  2.52it/s]       2%|▉                                                 | 211/11845 [01:26<1:18:05,  2.48it/s]       2%|▉                                                 | 212/11845 [01:26<1:16:21,  2.54it/s]       2%|▉                                                 | 213/11845 [01:27<1:14:48,  2.59it/s]       2%|▉                                                 | 214/11845 [01:27<1:15:38,  2.56it/s]       2%|▉                                                 | 215/11845 [01:28<1:14:45,  2.59it/s]       2%|▉                                                 | 216/11845 [01:28<1:13:38,  2.63it/s]       2%|▉                                                 | 217/11845 [01:28<1:14:50,  2.59it/s]       2%|▉                                                 | 218/11845 [01:29<1:13:53,  2.62it/s]       2%|▉                                                 | 219/11845 [01:29<1:25:40,  2.26it/s]       2%|▉                                                 | 220/11845 [01:30<1:21:11,  2.39it/s]       2%|▉                                                 | 221/11845 [01:30<1:20:11,  2.42it/s]       2%|▉                                                 | 222/11845 [01:30<1:16:40,  2.53it/s]       2%|▉                                                 | 223/11845 [01:31<1:14:22,  2.60it/s]       2%|▉                                                 | 224/11845 [01:31<1:13:05,  2.65it/s]       2%|▉                                                 | 225/11845 [01:31<1:12:29,  2.67it/s]       2%|▉                                                 | 226/11845 [01:32<1:12:49,  2.66it/s]       2%|▉                                                 | 227/11845 [01:32<1:12:59,  2.65it/s]       2%|▉                                                 | 228/11845 [01:33<1:12:59,  2.65it/s]       2%|▉                                                 | 229/11845 [01:33<1:13:12,  2.64it/s]       2%|▉                                                 | 230/11845 [01:33<1:13:22,  2.64it/s]       2%|▉                                                 | 231/11845 [01:34<1:17:56,  2.48it/s]       2%|▉                                                 | 232/11845 [01:34<1:24:48,  2.28it/s]       2%|▉                                                 | 233/11845 [01:35<1:25:40,  2.26it/s]       2%|▉                                                 | 234/11845 [01:35<1:23:21,  2.32it/s]       2%|▉                                                 | 235/11845 [01:36<1:20:50,  2.39it/s]       2%|▉                                                 | 236/11845 [01:36<1:19:45,  2.43it/s]       2%|█                                                 | 237/11845 [01:36<1:19:11,  2.44it/s]       2%|█                                                 | 238/11845 [01:37<1:18:12,  2.47it/s]       2%|█                                                 | 239/11845 [01:37<1:16:05,  2.54it/s]       2%|█                                                 | 240/11845 [01:37<1:14:44,  2.59it/s]       2%|█                                                 | 241/11845 [01:38<1:14:43,  2.59it/s]       2%|█                                                 | 242/11845 [01:38<1:15:48,  2.55it/s]       2%|█                                                 | 243/11845 [01:39<1:15:05,  2.57it/s]       2%|█                                                 | 244/11845 [01:39<1:14:54,  2.58it/s]       2%|█                                                 | 245/11845 [01:39<1:14:39,  2.59it/s]       2%|█                                                 | 246/11845 [01:40<1:24:02,  2.30it/s]       2%|█                                                 | 247/11845 [01:40<1:20:37,  2.40it/s]       2%|█                                                 | 248/11845 [01:41<1:17:30,  2.49it/s]       2%|█                                                 | 249/11845 [01:41<1:17:07,  2.51it/s]       2%|█                                                 | 250/11845 [01:41<1:16:15,  2.53it/s]       2%|█                                                 | 251/11845 [01:42<1:13:24,  2.63it/s]       2%|█                                                 | 252/11845 [01:42<1:11:52,  2.69it/s]       2%|█                                                 | 253/11845 [01:43<1:14:38,  2.59it/s]       2%|█                                                 | 254/11845 [01:43<1:16:22,  2.53it/s]       2%|█                                                 | 255/11845 [01:43<1:15:36,  2.55it/s]       2%|█                                                 | 256/11845 [01:44<1:17:06,  2.50it/s]       2%|█                                                 | 257/11845 [01:44<1:15:33,  2.56it/s]       2%|█                                                 | 258/11845 [01:45<1:16:31,  2.52it/s]       2%|█                                                 | 259/11845 [01:45<1:17:07,  2.50it/s]       2%|█                                                 | 260/11845 [01:46<1:24:49,  2.28it/s]       2%|█                                                 | 261/11845 [01:46<1:22:04,  2.35it/s]       2%|█                                                 | 262/11845 [01:46<1:21:51,  2.36it/s]       2%|█                                                 | 263/11845 [01:47<1:19:15,  2.44it/s]       2%|█                                                 | 264/11845 [01:47<1:18:59,  2.44it/s]       2%|█                                                 | 265/11845 [01:48<1:20:04,  2.41it/s]       2%|█                                                 | 266/11845 [01:48<1:21:09,  2.38it/s]       2%|█▏                                                | 267/11845 [01:48<1:19:35,  2.42it/s]       2%|█▏                                                | 268/11845 [01:49<1:19:47,  2.42it/s]       2%|█▏                                                | 269/11845 [01:49<1:20:06,  2.41it/s]       2%|█▏                                                | 270/11845 [01:50<1:20:26,  2.40it/s]       2%|█▏                                                | 271/11845 [01:50<1:19:07,  2.44it/s]       2%|█▏                                                | 272/11845 [01:50<1:19:42,  2.42it/s]       2%|█▏                                                | 273/11845 [01:51<1:21:42,  2.36it/s]       2%|█▏                                                | 274/11845 [01:51<1:18:12,  2.47it/s]       2%|█▏                                                | 275/11845 [01:52<1:17:04,  2.50it/s]       2%|█▏                                                | 276/11845 [01:52<1:18:18,  2.46it/s]       2%|█▏                                                | 277/11845 [01:52<1:17:41,  2.48it/s]       2%|█▏                                                | 278/11845 [01:53<1:16:39,  2.51it/s]       2%|█▏                                                | 279/11845 [01:53<1:14:20,  2.59it/s]       2%|█▏                                                | 280/11845 [01:54<1:14:04,  2.60it/s]       2%|█▏                                                | 281/11845 [01:54<1:12:50,  2.65it/s]       2%|█▏                                                | 282/11845 [01:54<1:13:10,  2.63it/s]       2%|█▏                                                | 283/11845 [01:55<1:11:33,  2.69it/s]       2%|█▏                                                | 284/11845 [01:55<1:12:00,  2.68it/s]       2%|█▏                                                | 285/11845 [01:55<1:11:24,  2.70it/s]       2%|█▏                                                | 286/11845 [01:56<1:11:47,  2.68it/s]       2%|█▏                                                | 287/11845 [01:56<1:22:07,  2.35it/s]       2%|█▏                                                | 288/11845 [01:57<1:18:47,  2.44it/s]       2%|█▏                                                | 289/11845 [01:57<1:19:07,  2.43it/s]       2%|█▏                                                | 290/11845 [01:58<1:17:19,  2.49it/s]       2%|█▏                                                | 291/11845 [01:58<1:18:12,  2.46it/s]       2%|█▏                                                | 292/11845 [01:58<1:20:46,  2.38it/s]       2%|█▏                                                | 293/11845 [01:59<1:18:28,  2.45it/s]       2%|█▏                                                | 294/11845 [01:59<1:17:49,  2.47it/s]       2%|█▏                                                | 295/11845 [02:00<1:17:18,  2.49it/s]       2%|█▏                                                | 296/11845 [02:00<1:14:56,  2.57it/s]       3%|█▎                                                | 297/11845 [02:00<1:14:25,  2.59it/s]       3%|█▎                                                | 298/11845 [02:01<1:12:58,  2.64it/s]       3%|█▎                                                | 299/11845 [02:01<1:11:39,  2.69it/s]       3%|█▎                                                | 300/11845 [02:01<1:11:31,  2.69it/s]       3%|█▎                                                | 301/11845 [02:02<1:20:17,  2.40it/s]       3%|█▎                                                | 302/11845 [02:02<1:20:24,  2.39it/s]       3%|█▎                                                | 303/11845 [02:03<1:19:00,  2.43it/s]       3%|█▎                                                | 304/11845 [02:03<1:17:22,  2.49it/s]       3%|█▎                                                | 305/11845 [02:04<1:16:03,  2.53it/s]       3%|█▎                                                | 306/11845 [02:04<1:16:50,  2.50it/s]       3%|█▎                                                | 307/11845 [02:04<1:15:50,  2.54it/s]       3%|█▎                                                | 308/11845 [02:05<1:17:39,  2.48it/s]       3%|█▎                                                | 309/11845 [02:05<1:14:27,  2.58it/s]       3%|█▎                                                | 310/11845 [02:05<1:14:34,  2.58it/s]       3%|█▎                                                | 311/11845 [02:06<1:16:11,  2.52it/s]       3%|█▎                                                | 312/11845 [02:06<1:14:59,  2.56it/s]       3%|█▎                                                | 313/11845 [02:07<1:15:09,  2.56it/s]       3%|█▎                                                | 314/11845 [02:07<1:16:47,  2.50it/s]       3%|█▎                                                | 315/11845 [02:07<1:15:02,  2.56it/s]       3%|█▎                                                | 316/11845 [02:08<1:14:29,  2.58it/s]       3%|█▎                                                | 317/11845 [02:08<1:14:23,  2.58it/s]       3%|█▎                                                | 318/11845 [02:09<1:14:38,  2.57it/s]       3%|█▎                                                | 319/11845 [02:09<1:12:17,  2.66it/s]       3%|█▎                                                | 320/11845 [02:09<1:11:03,  2.70it/s]       3%|█▎                                                | 321/11845 [02:10<1:10:41,  2.72it/s]       3%|█▎                                                | 322/11845 [02:10<1:12:41,  2.64it/s]       3%|█▎                                                | 323/11845 [02:11<1:15:50,  2.53it/s]       3%|█▎                                                | 324/11845 [02:11<1:15:03,  2.56it/s]       3%|█▎                                                | 325/11845 [02:11<1:14:33,  2.58it/s]       3%|█▍                                                | 326/11845 [02:12<1:13:15,  2.62it/s]       3%|█▍                                                | 327/11845 [02:12<1:15:36,  2.54it/s]       3%|█▍                                                | 328/11845 [02:13<1:24:37,  2.27it/s]       3%|█▍                                                | 329/11845 [02:13<1:20:28,  2.38it/s]       3%|█▍                                                | 330/11845 [02:13<1:18:01,  2.46it/s]       3%|█▍                                                | 331/11845 [02:14<1:16:43,  2.50it/s]       3%|█▍                                                | 332/11845 [02:14<1:14:03,  2.59it/s]       3%|█▍                                                | 333/11845 [02:14<1:15:25,  2.54it/s]       3%|█▍                                                | 334/11845 [02:15<1:15:36,  2.54it/s]       3%|█▍                                                | 335/11845 [02:15<1:15:17,  2.55it/s]       3%|█▍                                                | 336/11845 [02:16<1:14:49,  2.56it/s]       3%|█▍                                                | 337/11845 [02:16<1:15:01,  2.56it/s]       3%|█▍                                                | 338/11845 [02:16<1:13:28,  2.61it/s]       3%|█▍                                                | 339/11845 [02:17<1:12:44,  2.64it/s]       3%|█▍                                                | 340/11845 [02:17<1:16:49,  2.50it/s]       3%|█▍                                                | 341/11845 [02:18<1:17:24,  2.48it/s]       3%|█▍                                                | 342/11845 [02:18<1:25:44,  2.24it/s]       3%|█▍                                                | 343/11845 [02:19<1:22:27,  2.32it/s]       3%|█▍                                                | 344/11845 [02:19<1:20:13,  2.39it/s]       3%|█▍                                                | 345/11845 [02:19<1:17:17,  2.48it/s]       3%|█▍                                                | 346/11845 [02:20<1:16:34,  2.50it/s]       3%|█▍                                                | 347/11845 [02:20<1:15:22,  2.54it/s]       3%|█▍                                                | 348/11845 [02:20<1:13:00,  2.62it/s]       3%|█▍                                                | 349/11845 [02:21<1:14:14,  2.58it/s]       3%|█▍                                                | 350/11845 [02:21<1:14:32,  2.57it/s]       3%|█▍                                                | 351/11845 [02:22<1:14:14,  2.58it/s]       3%|█▍                                                | 352/11845 [02:22<1:16:08,  2.52it/s]       3%|█▍                                                | 353/11845 [02:23<1:17:54,  2.46it/s]       3%|█▍                                                | 354/11845 [02:23<1:14:26,  2.57it/s]       3%|█▍                                                | 355/11845 [02:23<1:12:23,  2.65it/s]       3%|█▌                                                | 356/11845 [02:24<1:21:12,  2.36it/s]       3%|█▌                                                | 357/11845 [02:24<1:21:17,  2.36it/s]       3%|█▌                                                | 358/11845 [02:25<1:21:21,  2.35it/s]       3%|█▌                                                | 359/11845 [02:25<1:20:57,  2.36it/s]       3%|█▌                                                | 360/11845 [02:25<1:18:03,  2.45it/s]       3%|█▌                                                | 361/11845 [02:26<1:17:26,  2.47it/s]       3%|█▌                                                | 362/11845 [02:26<1:15:10,  2.55it/s]       3%|█▌                                                | 363/11845 [02:27<1:16:57,  2.49it/s]       3%|█▌                                                | 364/11845 [02:27<1:17:44,  2.46it/s]       3%|█▌                                                | 365/11845 [02:27<1:15:15,  2.54it/s]       3%|█▌                                                | 366/11845 [02:28<1:14:16,  2.58it/s]       3%|█▌                                                | 367/11845 [02:28<1:13:03,  2.62it/s]       3%|█▌                                                | 368/11845 [02:29<1:16:30,  2.50it/s]
