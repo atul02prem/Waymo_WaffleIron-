@@ -223,7 +223,7 @@ def convert_segment(tfrecord_path, output_dir, segment_idx):
         if points is None or len(points) == 0:
             continue
 
-        #labels = remap_waymo_to_kitti(labels)
+        #labels = remap_waymo_to_kitti(labels) #disabled remapping
 
         # Save as .bin (x, y, z, intensity) - SemanticKITTI format
         bin_path = os.path.join(vel_dir, f"{frame_count:06d}.bin")
